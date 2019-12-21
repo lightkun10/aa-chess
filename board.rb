@@ -85,26 +85,3 @@ class Board
         end
     end
 end
-
-# new_game = Board.new
-# new_game.rows
-
-########### ROOK TEST SECTION ###############
-# start_rook1 = 0, 0
-# end_rook1 = 2, 0
-# start_rook2 = 7, 0
-# # end_rook1 = 
-
-# new_game.move_piece(start_rook1, end_rook1)
-
-
-############################################
-
-
-
-# TEST PAWN SECTION ############################
-# start_pawn = 1, 0
-# end_pawn = 2, 0
-# new_game.move_piece(start_pawn, end_pawn)
-# p new_game[end_pawn]
-################################################
