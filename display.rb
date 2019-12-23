@@ -13,7 +13,7 @@ class Display
 
     def build_grid
         @board.rows.map.with_index do |row, i|
-            # visualization
+            ### visualization
             # row.each { |piece| print "#{piece.color} " }
             build_row(row, i)
         end
