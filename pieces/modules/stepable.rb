@@ -4,7 +4,13 @@ module Stepable
             cur_x, cur_y = pos
             pos = [dx + cur_x, dy + cur_y]
 
-            moves.push(pos) if board.empty?(pos)
+            next unless board.valid_pos?(pos)
+
+            if board.empty?(pos)
+                moves.push(pos)
+            elsif board[pos].color != color
+                moves.push(pos)
+            end
         end
     end
 

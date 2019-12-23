@@ -7,7 +7,8 @@ class Display
     
     def initialize(board)
         @board = board
-        @cursor = Cursor.new([0, 0], board)
+        # @cursor = Cursor.new([0, 0], board)
+        @cursor = Cursor.new([10, 10], board)
     end
 
     def build_grid
@@ -41,11 +42,12 @@ class Display
 
     def render
         system ("clear")
+        puts "Arrow keys, WASD, or vim to move, space or enter to confirm.\n"
         ## this is for the visualization. un-comment to see the visual
         # @board.rows.map! { |row| p "[][][][][][][][]" }
 
         # build grid from each row
-        build_grid.each { |row| row.join }
+        build_grid.each { |row| puts row.join }
     end
 end
 

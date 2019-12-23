@@ -103,7 +103,7 @@ class Cursor
       new_pos = [cursor_pos[0] + diff[0], cursor_pos[1] + diff[1]]
       # ensure to update @cursor_pos only when the new position is on the board.
       if board.valid_pos?(new_pos)
-          cursor_pos = new_pos
+          self.cursor_pos = new_pos
       end
   end
 end
