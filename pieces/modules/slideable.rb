@@ -1,5 +1,5 @@
 module Slideable
-    HORIZONTAL_VERTICAL_DIRS = [ # [5, 4]
+    HORIZONTAL_VERTICAL_DIRS = [
         [-1, 0],
         [1,  0],
         [0, -1],
