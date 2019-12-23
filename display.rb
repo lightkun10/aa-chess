@@ -45,7 +45,7 @@ class Display
         # @board.rows.map! { |row| p "[][][][][][][][]" }
 
         # build grid from each row
-        build_grid.each { |row| p row }
+        build_grid.each { |row| row.join }
     end
 end
 
