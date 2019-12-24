@@ -33,8 +33,18 @@ write a #checkmate?(color) method.
 
 =end
     def checkmate?(color)
+        # return false unless in_check?(color)
+        # select the same piece
+
+        # If the player is in check, and 
+        # if none of the player's pieces have any #valid_moves (to be implemented in a moment), 
+        # then the player is in checkmate.
         return false unless in_check?(color)
-        ####### UNDER MAINTANENCE
+
+        pieces_same_color = pieces.select { |piece| piece.color == color }
+        pieces_same_color.all? do |piece|
+            piece.valid_moves.empty?
+        end
     end
 
     def dup
@@ -64,7 +74,24 @@ write a #checkmate?(color) method.
         end
     end
 
-    def move_piece(start_pos, end_pos) # [0, 1], [3, 1]
+    def move_piece(turn_color, start_pos, end_pos)
+        raise "Start position is empty" if empty?(start_pos)
+
+        start_piece = self[start_pos]
+
+        if start_piece.color != turn_color
+            raise "Please move your own piece."
+        elsif !start_piece.moves.include?(end_pos)
+            raise "You can't move that piece like that..."
+        elsif !start_piece.valid_moves.include?(end_pos)
+            raise "You can't move into check..."
+        end
+
+        move_piece!(start_pos, end_pos)
+    end
+
+    # move piece without check
+    def move_piece!(start_pos, end_pos) # [0, 1], [3, 1]
         start_piece = self[start_pos]
 
         # p self[start_pos].class #<< before moved
@@ -78,7 +105,6 @@ write a #checkmate?(color) method.
 
     # gather all pieces in one place
     def pieces
-        # debugger
          @rows.flatten.reject { |piece| piece.empty? }
     end
 
@@ -134,16 +160,3 @@ write a #checkmate?(color) method.
         end
     end
 end
-
-# new_b = Board.new
-# # p new_b.pieces
-# pos_rookB = 0, 0
-# pos1 = 1, 1
-# pos2 = 2, 1
-# # pos = 0, 4
-# # pos = 5, 2
-# # debugger
-# # p new_b.move_piece(pos1, pos2)
-
-# # new_b.move_piece(pos)
-# p new_b[pos_rookB].valid_moves
