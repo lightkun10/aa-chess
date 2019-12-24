@@ -160,3 +160,16 @@ write a #checkmate?(color) method.
         end
     end
 end
+
+new_b = Board.new
+
+###### VISUALIZATION ######
+# Use for checking/debugging
+# Please don't delete this
+
+new_b.rows.each do |row|
+    row.each do |piece|
+            p "#{piece.pos} ---- #{piece.class}"
+    end
+end
+###### VISUALIZATION ######
