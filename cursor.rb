@@ -82,28 +82,21 @@ class Cursor
 
   def handle_key(key)
       case key
-      when :space, :return
-          toggle_selected
-          self.cursor_pos
+      when :return, :space
+          @cursor_pos
       when :left, :right, :up, :down
-          # call #update_pos with the appropriate movement difference from MOVES
           update_pos(MOVES[key])
           nil
       when :ctrl_c
-          Process.exit 0
+          exit 0
       end
   end
 
   def update_pos(diff)
-      # use the diff to reassign @cursor_pos to a new position      
-      # cursor pos is an Array, split them, then add each element to diff
-        # cursor_pos = [4, 7],   diff = [0, -1]
-        # [(4 + 0), (7 + (-1))]
-        # new_pos = [4, 6] << still in row 4, but go to left
-      new_pos = [cursor_pos[0] + diff[0], cursor_pos[1] + diff[1]]
+      new_pos = cursor_pos[0] + diff[0], cursor_pos[1] + diff[1]
       # ensure to update @cursor_pos only when the new position is on the board.
       if board.valid_pos?(new_pos)
-          self.cursor_pos = new_pos
+          @cursor_pos = new_pos
       end
   end
 end
