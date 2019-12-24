@@ -2,35 +2,6 @@ require_relative 'cursor'
 require_relative 'board'
 require 'colorize'
 
-=begin INTRODUCTION
-
-- An instance of Cursor initializes with a cursor_pos and an instance of Board. 
-- The cursor manages user input, according to which it updates its @cursor_pos. 
-- The display will render the square at @cursor_pos in a different color. 
-- Within display.rb require cursor.rb and set the instance variable 
-    @cursor to Cursor.new([0,0], board).
-
-=end
-
-=begin INTRO CONT.
-
-In cursor.rb we've provided a KEYMAP that translates keypresses 
-    into actions and movements. 
-The MOVES hash maps possible movement differentials. 
-You can use the #get_input method as is. #read_char handles console input. 
-Skim over #read_char to gain a general understanding of how the method works. 
-The STDIN methods are unfamiliar to me now. NO need to fret the details.
-
-
-=begin
-
-Render the square at the @cursor_pos display in a different color. 
-Test that you can move your cursor around the board by creating and 
-calling a method that loops through Display#render and Cursor#get_input 
-(much as Player#make_move will function later!).
-
-=end
-
 class Display
     attr_reader :board, :cursor
     

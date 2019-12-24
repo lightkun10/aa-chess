@@ -38,9 +38,6 @@ write a #checkmate?(color) method.
     end
 
     def in_check(color)
-        ## returns whether a player is in check. You can implement this by 
-        #   (1) finding the position of the King on the board, then 
-        #   (2) seeing if ANY of the opposing pieces can move to that position.
         king_pos = find_king(color)
         pieces.any? do |piece|
             piece.moves.include?(king_pos) && piece.color != color
