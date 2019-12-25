@@ -42,9 +42,7 @@ class Display
     def render
         # render the entire grid(collection of rows(?))
         system("clear")
+        puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
         build_grid.each { |row| puts row.join }
     end
 end
-
-test_disp = Display.new(Board.new)
-test_disp.render

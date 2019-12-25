@@ -40,16 +40,29 @@ class Cursor
     @selected = false
   end
 
+  def toggle_selected
+      @selected = !@selected
+  end
+
   def get_input
     key = KEYMAP[read_char]
     handle_key(key)
   end
 
-  def toggle_selected
-      @selected = !@selected
-  end
 
   private
+  
+  def handle_key(key)
+      case key
+      when :return, :space
+          @cursor_pos
+      when :left, :right, :up, :down
+          update_pos(MOVES[key])
+          nil
+      when :ctrl_c
+          exit 0
+      end
+  end
 
   def read_char
     STDIN.echo = false # stops the console from printing return values
@@ -77,23 +90,12 @@ class Cursor
     STDIN.echo = true # the console prints return values again
     STDIN.cooked! # the opposite of raw mode :)
 
-    return input
+    input
   end
 
-  def handle_key(key)
-      case key
-      when :return, :space
-          @cursor_pos
-      when :left, :right, :up, :down
-          update_pos(MOVES[key])
-          nil
-      when :ctrl_c
-          exit 0
-      end
-  end
 
   def update_pos(diff)
-      new_pos = cursor_pos[0] + diff[0], cursor_pos[1] + diff[1]
+      new_pos = [cursor_pos[0] + diff[0], cursor_pos[1] + diff[1]]
       # ensure to update @cursor_pos only when the new position is on the board.
       if board.valid_pos?(new_pos)
           @cursor_pos = new_pos

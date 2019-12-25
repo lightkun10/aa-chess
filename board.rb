@@ -24,14 +24,6 @@ class Board
         self[pos] = piece
     end
 
-=begin
-
-write a #checkmate?(color) method. 
-    - If the player is in check, and 
-    - if none of the player's pieces have any #valid_moves (to be implemented in a moment), 
-    => then the player is in checkmate
-
-=end
     def checkmate?(color)
         # return false unless in_check?(color)
         # select the same piece
@@ -161,16 +153,16 @@ write a #checkmate?(color) method.
     end
 end
 
-pandu_board = Board.new
+# pandu_board = Board.new
 
 
 ###### VISUALIZATION ######
 # Use for checking/debugging
 # Please don't delete this
 
-pandu_board.rows.each do |row|
-    row.each do |piece|
-            puts "#{piece.pos} ---- #{piece.class} "
-    end
-end
+# pandu_board.rows.each do |row|
+#     row.each do |piece|
+#             puts "#{piece.pos} ---- #{piece.class} "
+#     end
+# end
 ###### VISUALIZATION ######
